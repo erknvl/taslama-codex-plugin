@@ -1,0 +1,20 @@
+{
+  "name": "taslama",
+  "interface": {
+    "displayName": "Taslama"
+  },
+  "plugins": [
+    {
+      "name": "taslama",
+      "source": {
+        "source": "local",
+        "path": "./plugins/taslama"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Business"
+    }
+  ]
+}

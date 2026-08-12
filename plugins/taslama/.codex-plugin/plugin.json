@@ -1,0 +1,39 @@
+{
+  "name": "taslama",
+  "version": "1.0.0",
+  "description": "Manage project-scoped salon content, customers, schedules, and booking operations through Taslama MCP.",
+  "author": {
+    "name": "Taslama Agency",
+    "url": "https://app.taslama.agency"
+  },
+  "homepage": "https://app.taslama.agency",
+  "repository": "https://github.com/erknvl/taslama-codex-plugin",
+  "license": "MIT",
+  "keywords": [
+    "taslama",
+    "salon",
+    "cms",
+    "bookings",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Taslama",
+    "shortDescription": "Run salon content and operations with Taslama.",
+    "longDescription": "Connect Codex to a selected Taslama project. Review and manage localized catalogs, professionals, customers, bookings, landing content, and site settings with project-scoped permissions.",
+    "developerName": "Taslama Agency",
+    "category": "Business",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://app.taslama.agency",
+    "defaultPrompt": [
+      "Review today's Taslama bookings and flag issues.",
+      "Audit my Taslama catalog for missing content.",
+      "Update Taslama content after showing me the changes."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

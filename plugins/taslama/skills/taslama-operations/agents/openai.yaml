@@ -1,0 +1,4 @@
+interface:
+  display_name: "Taslama Operations"
+  short_description: "Manage Taslama salon content and operations safely"
+  default_prompt: "Review my Taslama project and help with today's operations."
