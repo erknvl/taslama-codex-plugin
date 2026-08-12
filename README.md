@@ -13,4 +13,6 @@ codex plugin add taslama@taslama
 
 Restart Codex and start a new task after installation so the MCP tools and operations skill are loaded.
 
-See [plugin documentation](plugins/taslama/README.md) for the connection behavior.
+No API key or cookie setup is needed. On the first connection, authorize with your Taslama phone number or email and password, then select a project.
+
+See [plugin documentation](plugins/taslama/README.md) for authorization, permissions, and historical booking imports.
