@@ -1,6 +1,6 @@
 # Taslama MCP tool catalog
 
-Available tools depend on the deployed backend and connection permissions, so discover them at runtime.
+The production server exposed 27 tools during validation on 2026-08-11. API-key permissions and deployment versions can expose a smaller or newer set, so discover tools at runtime.
 
 ## Read tools
 
@@ -23,21 +23,23 @@ Collection reads support bounded pagination, sorting, a JSON `where` string, a J
 - `createProducts`, `updateProducts`
 - `updateSiteSettings`, `updateLandingPage`
 
-## Booking and customer operations
+The current server permits professional deletion in its collection configuration, but a particular key may omit that tool. Treat any deletion as high impact.
 
-- `createBookings`, `updateBookings`, `deleteBookings`
-- `importHistoricalBookings`: import up to 500 past terminal bookings per call
-- `updateBookingStatus`
-- `getMyProfessionalSchedule`, `extendBookingSession`
-- `upsertCustomers`, `deleteCustomers`
+## Operational writes
 
-Use only tools returned by runtime discovery. The server remains authoritative for account roles, project scope, and record-level access.
+- `updateBookingStatus`: set up to 100 bookings to `pending`, `confirmed`, `cancelled`, `completed`, or `no-show` when the account can manage bookings.
+- `upsertCustomers`: create or update up to 100 customers while enforcing the global Account hierarchy.
+- `deleteCustomers`: unlink or remove up to 100 customers. Customers with bookings cannot be removed; shared Accounts remain preserved.
 
-## Service contract
+Newer deployments may expose `getMyProfessionalSchedule` and `extendBookingSession`. Use them only when discovered. Schedule reads are limited to 92 days; extensions accept 1-480 minutes and can shift later active sessions.
+
+## Project and authorization contract
 
 - Endpoint: `https://app.taslama.agency/api/mcp`
 - Transport: streamable HTTP over HTTPS
+- Authentication: `Authorization: Bearer <API key>`
+- Project scope: `Cookie: payload-tenant=<project ID>`
 - Locales: `tk`, `ru`, `en`
 - Operational time zone: `Asia/Ashgabat`
 
-Accounts, project memberships, and audit logs are not exposed as general MCP collections.
+Accounts, project memberships, and audit logs are not exposed as general MCP collections. Server-side access control remains authoritative.

@@ -1,20 +1,46 @@
 # Taslama Codex plugin
 
-Connect Codex to the project-scoped Taslama MCP server at `https://app.taslama.agency/api/mcp`.
+This package connects Codex to the project-scoped Taslama MCP server at `https://app.taslama.agency/api/mcp`.
 
-## Authorization
+## Credentials
 
-No API key, cookie, environment variable, or local credentials file is required.
+1. Sign in to Taslama Admin.
+2. Open **MCP -> API Keys** and create a dedicated least-privilege key.
+3. Choose a project and copy its ID.
+4. Configure the environment used to launch Codex:
 
-When Codex first connects to Taslama, choose **Authorize** and sign in on the Taslama page with either:
+```sh
+export TASLAMA_MCP_API_KEY='your-api-key'
+export TASLAMA_PROJECT_COOKIE='payload-tenant=your-project-id'
+```
 
-- your unique phone number and password; or
-- your email and password.
+The API key is sent as a Bearer token. The selected project is sent through the `Cookie` header using the `payload-tenant` cookie.
 
-Choose the project you want Codex to use and approve access. Codex stores the resulting OAuth token; your password is submitted only to your self-hosted Taslama server and is never placed in this repository or pasted into chat.
+On macOS, use `launchctl setenv` for the two variables when running the Codex desktop application, then restart Codex.
 
-The authorization follows your existing Taslama account role and project membership. Reauthorize the connection when you need to switch projects or if access is revoked.
+Run `scripts/validate-mcp.sh` to verify the authenticated handshake and list the tools granted to the key.
 
-## Historical bookings
+## Installation
 
-`importHistoricalBookings` accepts up to 500 past bookings in one request. For more than 500, split the data into batches of 500 or fewer and make another call for each batch. Every row must be in the past and use a terminal status supported by the server.
+Install this package from the Taslama Git marketplace:
+
+```sh
+codex plugin marketplace add https://github.com/erknvl/taslama-codex-plugin.git
+codex plugin add taslama@taslama
+```
+
+Start a new task after installation so the connection and skills are reloaded.
+
+Do not put a real API key or project cookie in this repository, the plugin manifest, screenshots, or support messages.
+
+## Included features
+
+- Project-scoped Taslama MCP connection
+- Catalog, professional, customer, booking, landing-page, and site-settings operations
+- Safe write-confirmation guidance
+- Historical booking journal audit and import workflow
+- Deterministic MCP connection validation
+
+## Icon
+
+The marketplace icon is stored at `assets/icon.png` and uses the yellow Taslama mark on a solid black background.

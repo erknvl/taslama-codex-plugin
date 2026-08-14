@@ -4,15 +4,29 @@ Public Git marketplace for the Taslama Codex plugin.
 
 ## Install from Git
 
-Add this repository as a plugin marketplace, then install `taslama` from the **Taslama** source:
+Add this repository as a plugin marketplace and install `taslama` from the **Taslama** source:
 
 ```sh
 codex plugin marketplace add https://github.com/erknvl/taslama-codex-plugin.git
 codex plugin add taslama@taslama
 ```
 
-Restart Codex and start a new task after installation so the MCP tools and operations skill are loaded.
+Configure the MCP API key and selected-project cookie in the environment used to launch Codex:
 
-No API key or cookie setup is needed. On the first connection, authorize with your Taslama phone number or email and password, then select a project.
+```sh
+export TASLAMA_MCP_API_KEY='your-api-key'
+export TASLAMA_PROJECT_COOKIE='payload-tenant=your-project-id'
+```
 
-See [plugin documentation](plugins/taslama/README.md) for authorization, permissions, and historical booking imports.
+On macOS, desktop applications normally inherit variables configured through `launchctl`:
+
+```sh
+launchctl setenv TASLAMA_MCP_API_KEY 'your-api-key'
+launchctl setenv TASLAMA_PROJECT_COOKIE 'payload-tenant=your-project-id'
+```
+
+Restart Codex and start a new task after installation so the MCP tools and Taslama skills are loaded.
+
+See the [plugin documentation](plugins/taslama/README.md) for credentials, validation, permissions, and historical booking imports.
+
+Never commit a real API key or project cookie.

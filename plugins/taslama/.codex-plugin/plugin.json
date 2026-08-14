@@ -1,6 +1,6 @@
 {
   "name": "taslama",
-  "version": "1.1.0+codex.20260812211640",
+  "version": "1.1.0+codex.20260814115930",
   "description": "Manage project-scoped salon content, customers, schedules, and booking operations through Taslama MCP.",
   "author": {
     "name": "Taslama Agency",
@@ -33,7 +33,10 @@
       "Review today's Taslama bookings and flag issues.",
       "Audit my Taslama catalog for missing content.",
       "Update Taslama content after showing me the changes."
-    ]
+    ],
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png",
+    "brandColor": "#000000"
   },
   "mcpServers": "./.mcp.json"
 }

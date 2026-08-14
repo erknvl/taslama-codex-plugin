@@ -5,11 +5,11 @@ description: Manage Taslama salon projects through the Taslama MCP tools. Use fo
 
 # Taslama Operations
 
-Use the project selected by the MCP connection. Never invent a project ID, bypass project scope, or place sensitive connection values in chat, files, logs, or tool arguments.
+Use the project selected by `TASLAMA_PROJECT_COOKIE`. Authentication uses `TASLAMA_MCP_API_KEY`. Never invent either value, bypass project scope, or place credentials in chat, files, logs, or tool arguments.
 
 ## Workflow
 
-1. Inspect the available Taslama tools because access depends on the authorized connection and deployed server version.
+1. Inspect the available Taslama tools because access depends on the API key and deployed server version.
 2. Start with the narrowest read: use `depth: 0`, a small `limit`, explicit `select`, and the requested locale (`tk`, `ru`, or `en`).
 3. Resolve names to IDs before using relationships or mutations. Reuse IDs returned by reads.
 4. Summarize the current state and the exact proposed change.
@@ -20,11 +20,12 @@ Use the project selected by the MCP connection. Never invent a project ID, bypas
 
 - Treat `find*` tools as reads. Treat `create*`, `update*`, `upsertCustomers`, `deleteCustomers`, `updateBookingStatus`, and schedule-changing tools as writes.
 - Never call a write tool merely to test connectivity.
-- Do not delete a professional, customer, or booking without naming the resolved record and consequences before the call.
+- Do not delete a professional or customer without naming the resolved record and consequences before the call.
+- Bookings are read-only except for dedicated status and operational-timing tools exposed by the server.
 - Preserve original booking timing. When extending a session, explain that later active sessions can move to prevent overlap.
 - Use integer minor units for prices and `Asia/Ashgabat` for operational time.
-- Respect the server's role and connection permissions. Do not retry a denied action through a broader tool.
-- If a global or collection is reported missing, treat it as deployment/schema drift, not an empty result.
+- Respect the server's role and API-key permissions. Do not retry a denied action through a broader tool.
+- If a global or collection is reported missing, treat it as deployment/schema drift, not an empty result; do not attempt the corresponding update.
 
 ## Content and localization
 
@@ -37,7 +38,7 @@ Use the project selected by the MCP connection. Never invent a project ID, bypas
 
 - Daily schedule: read bookings for a bounded local-day range, select only timing, customer, service, professional, and status fields, then flag overlaps or incomplete states.
 - Catalog audit: list categories before services or products, page through results, and report missing relationships, publication state, price, duration, media, or translation fields.
-- Historical booking import: validate past dates and terminal statuses, submit at most 500 bookings per call, and continue with another call for additional batches.
+- Historical booking import: validate past dates and terminal statuses, identify customers by normalized Turkmenistan phone first or email as fallback, submit at most 500 bookings per call, and continue with another call for additional batches.
 - Customer import: normalize and preview names, Turkmenistan phone numbers, and emails; batch no more than 100; report each created or updated result.
 - Landing/site edits: read the global first, preserve unrelated fields and block order, then update only the requested values.
 
