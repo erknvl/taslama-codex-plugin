@@ -22,6 +22,14 @@ Run `scripts/validate-mcp.sh` to verify the authenticated handshake and list the
 
 ## Installation
 
+On macOS, Git marketplaces require Apple Command Line Tools. If Codex reports that no developer tools were found, run:
+
+```sh
+xcode-select --install
+```
+
+Complete the installer, restart Codex, and then add the marketplace again. The full Xcode application is not required.
+
 Install this package from the Taslama Git marketplace:
 
 ```sh

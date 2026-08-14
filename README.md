@@ -4,6 +4,14 @@ Public Git marketplace for the Taslama Codex plugin.
 
 ## Install from Git
 
+On macOS, installing a Git marketplace requires Apple Command Line Tools. If Codex reports that no developer tools were found, run:
+
+```sh
+xcode-select --install
+```
+
+Complete the installer, restart Codex, and then add the marketplace again. The full Xcode application is not required.
+
 Add this repository as a plugin marketplace and install `taslama` from the **Taslama** source:
 
 ```sh
