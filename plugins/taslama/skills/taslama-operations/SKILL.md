@@ -5,7 +5,7 @@ description: Manage Taslama salon projects through the Taslama MCP tools. Use fo
 
 # Taslama Operations
 
-Use the project selected by `TASLAMA_PROJECT_COOKIE`. Authentication uses `TASLAMA_MCP_API_KEY`. Never invent either value, bypass project scope, or place credentials in chat, files, logs, or tool arguments.
+Use the project selected by `TASLAMA_PROJECT_ID`. Authentication uses `TASLAMA_MCP_API_KEY`. Never invent either value, bypass project scope, or place credentials in chat, files, logs, or tool arguments.
 
 ## Workflow
 

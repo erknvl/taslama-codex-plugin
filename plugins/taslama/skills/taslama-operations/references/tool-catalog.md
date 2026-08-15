@@ -38,7 +38,7 @@ Newer deployments may expose `getMyProfessionalSchedule` and `extendBookingSessi
 - Endpoint: `https://app.taslama.agency/api/mcp`
 - Transport: streamable HTTP over HTTPS
 - Authentication: `Authorization: Bearer <API key>`
-- Project scope: `Cookie: payload-tenant=<project ID>`
+- Project scope: `X-Taslama-Project-ID: <project ID>`
 - Locales: `tk`, `ru`, `en`
 - Operational time zone: `Asia/Ashgabat`
 

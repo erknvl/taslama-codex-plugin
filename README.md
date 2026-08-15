@@ -23,14 +23,14 @@ Configure the MCP API key and selected-project cookie in the environment used to
 
 ```sh
 export TASLAMA_MCP_API_KEY='your-api-key'
-export TASLAMA_PROJECT_COOKIE='payload-tenant=your-project-id'
+export TASLAMA_PROJECT_ID='your-project-id'
 ```
 
 On macOS, desktop applications normally inherit variables configured through `launchctl`:
 
 ```sh
 launchctl setenv TASLAMA_MCP_API_KEY 'your-api-key'
-launchctl setenv TASLAMA_PROJECT_COOKIE 'payload-tenant=your-project-id'
+launchctl setenv TASLAMA_PROJECT_ID 'your-project-id'
 ```
 
 Restart Codex and start a new task after installation so the MCP tools and Taslama skills are loaded.

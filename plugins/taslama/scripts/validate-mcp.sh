@@ -2,7 +2,7 @@
 set -euo pipefail
 
 : "${TASLAMA_MCP_API_KEY:?Set TASLAMA_MCP_API_KEY to a Taslama MCP API key}"
-: "${TASLAMA_PROJECT_COOKIE:?Set TASLAMA_PROJECT_COOKIE to payload-tenant=PROJECT_ID}"
+: "${TASLAMA_PROJECT_ID:?Set TASLAMA_PROJECT_ID to the selected project ID}"
 
 endpoint="${TASLAMA_MCP_URL:-https://app.taslama.agency/api/mcp}"
 response_file="$(mktemp)"
@@ -18,7 +18,7 @@ request() {
     --header 'Accept: application/json, text/event-stream' \
     --header 'Content-Type: application/json' \
     --header "Authorization: Bearer ${TASLAMA_MCP_API_KEY}" \
-    --header "Cookie: ${TASLAMA_PROJECT_COOKIE}" \
+    --header "X-Taslama-Project-ID: ${TASLAMA_PROJECT_ID}" \
     --data "$payload"
 }
 
@@ -35,7 +35,7 @@ curl --fail-with-body --silent --show-error \
   --header 'Accept: application/json, text/event-stream' \
   --header 'Content-Type: application/json' \
   --header "Authorization: Bearer ${TASLAMA_MCP_API_KEY}" \
-  --header "Cookie: ${TASLAMA_PROJECT_COOKIE}" \
+  --header "X-Taslama-Project-ID: ${TASLAMA_PROJECT_ID}" \
   ${session_header[@]+"${session_header[@]}"} \
   --data '{"jsonrpc":"2.0","method":"notifications/initialized"}' >/dev/null
 
@@ -45,7 +45,7 @@ curl --fail-with-body --silent --show-error \
   --header 'Accept: application/json, text/event-stream' \
   --header 'Content-Type: application/json' \
   --header "Authorization: Bearer ${TASLAMA_MCP_API_KEY}" \
-  --header "Cookie: ${TASLAMA_PROJECT_COOKIE}" \
+  --header "X-Taslama-Project-ID: ${TASLAMA_PROJECT_ID}" \
   ${session_header[@]+"${session_header[@]}"} \
   --data '{"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}'
 

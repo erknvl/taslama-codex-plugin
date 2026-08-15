@@ -5,7 +5,7 @@
       "url": "https://app.taslama.agency/api/mcp",
       "bearer_token_env_var": "TASLAMA_MCP_API_KEY",
       "env_http_headers": {
-        "Cookie": "TASLAMA_PROJECT_COOKIE"
+        "X-Taslama-Project-ID": "TASLAMA_PROJECT_ID"
       },
       "default_tools_approval_mode": "writes",
       "startup_timeout_sec": 15,

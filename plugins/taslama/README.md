@@ -11,10 +11,10 @@ This package connects Codex to the project-scoped Taslama MCP server at `https:/
 
 ```sh
 export TASLAMA_MCP_API_KEY='your-api-key'
-export TASLAMA_PROJECT_COOKIE='payload-tenant=your-project-id'
+export TASLAMA_PROJECT_ID='your-project-id'
 ```
 
-The API key is sent as a Bearer token. The selected project is sent through the `Cookie` header using the `payload-tenant` cookie.
+The user API key is sent as a Bearer token. The selected project is sent through the `X-Taslama-Project-ID` header. MCP access is limited by the user's role in that project.
 
 On macOS, use `launchctl setenv` for the two variables when running the Codex desktop application, then restart Codex.
 
@@ -39,7 +39,7 @@ codex plugin add taslama@taslama
 
 Start a new task after installation so the connection and skills are reloaded.
 
-Do not put a real API key or project cookie in this repository, the plugin manifest, screenshots, or support messages.
+Do not put a real API key or project ID in this repository, the plugin manifest, screenshots, or support messages.
 
 ## Included features
 
