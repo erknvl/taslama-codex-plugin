@@ -1,21 +1,52 @@
 # Taslama Codex plugins
 
-Public Git marketplace for two Taslama Codex plugins:
+Taslama X is the public, OAuth-based distribution for ChatGPT/Codex-compatible
+clients. It is the recommended path for new users: connect the published
+Taslama app/plugin, sign in, choose a project, and start working. It does not
+require Git, a terminal, Xcode Command Line Tools, environment variables, or
+local secrets.
+
+This repository is also the developer distribution for two Taslama Codex
+plugins:
 
 - `taslama-x` uses interactive OAuth with project selection and no local secrets.
-- `taslama` uses an API key and explicit project ID for trusted non-interactive clients.
+- `taslama` uses an API key and explicit project ID for trusted non-interactive clients. Keep it internal/developer-only.
 
-## Install from Git
+## Public/workspace installation (recommended)
 
-On macOS, installing a Git marketplace requires Apple Command Line Tools. If Codex reports that no developer tools were found, run:
+Install **Taslama X** from the approved ChatGPT/Codex app or workspace directory,
+then authorize it when prompted:
+
+1. Search for `Taslama` / `Taslama X`.
+2. Choose **Connect**, **Install**, or the equivalent workspace action.
+3. Sign in on `app.taslama.agency`.
+4. Select the Taslama project to use.
+5. Approve the requested read/write scopes.
+
+The OAuth connection is project-scoped and uses the account's current Taslama
+roles. No API key, cookie, project ID variable, or credential file is required.
+Remote OAuth is also the intended route for mobile clients; no local plugin
+installation is needed on the phone. Availability depends on the host product's
+published-app/workspace rollout.
+
+See the [Taslama X documentation](plugins/taslama-x/README.md) and the
+[submission package](plugins/taslama-x/docs/README.md) for review and rollout
+materials.
+
+## Developer-only Git marketplace
+
+Use the Git marketplace only for local development, plugin validation, or a
+controlled internal rollout. It is not the intended onboarding path for new
+salon users.
+
+On macOS, Git marketplace installation may require Apple Command Line Tools. If
+Codex reports that no developer tools were found, install them with:
 
 ```sh
 xcode-select --install
 ```
 
-Complete the installer, restart Codex, and then add the marketplace again. The full Xcode application is not required.
-
-Add this repository as a plugin marketplace, then install the OAuth-based Taslama X plugin:
+Then add this repository and install the OAuth plugin:
 
 ```sh
 codex plugin marketplace add https://github.com/erknvl/taslama-codex-plugin.git
@@ -26,9 +57,11 @@ Authorize `taslama-x` when Codex prompts you. Sign in on the Taslama-hosted page
 
 Start a new task after installation so the OAuth connection and copied Taslama skills are loaded. See the [Taslama X documentation](plugins/taslama-x/README.md) for the authorization and validation flow.
 
-## API-key variant
+## Internal API-key variant
 
-For trusted automation that cannot complete interactive OAuth, install the original plugin:
+For trusted automation or development environments that cannot complete
+interactive OAuth, install the original plugin. Do not publish or recommend it
+as the consumer onboarding path:
 
 ```sh
 codex plugin add taslama@taslama
