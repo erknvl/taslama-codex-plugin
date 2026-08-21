@@ -16,6 +16,10 @@ Your password is submitted only to `https://app.taslama.agency`. Do not paste a 
 
 To switch projects, log out of the `taslama-x` MCP connection and authorize it again.
 
+## Language
+
+MCP tool identifiers stay stable in English snake_case, while their human titles support English, Russian, and Turkmen. Taslama selects the title language from `X-Taslama-Locale`, the request language, or `Accept-Language`, with English as the fallback. Content operations continue to use their explicit `locale` and `fallbackLocale` inputs.
+
 ## Installation
 
 On macOS, Git marketplaces require Apple Command Line Tools. If Codex reports that no developer tools were found, run `xcode-select --install`, complete the installer, and restart Codex.

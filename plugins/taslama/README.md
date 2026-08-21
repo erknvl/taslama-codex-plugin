@@ -20,6 +20,10 @@ On macOS, use `launchctl setenv` for the two variables when running the Codex de
 
 Run `scripts/validate-mcp.sh` to verify the authenticated handshake and list the tools granted to the key.
 
+## Language
+
+MCP tool identifiers stay stable in English snake_case, while their human titles support English, Russian, and Turkmen. Taslama selects the title language from `X-Taslama-Locale`, the request language, or `Accept-Language`, with English as the fallback. Content operations continue to use their explicit `locale` and `fallbackLocale` inputs.
+
 ## Installation
 
 On macOS, Git marketplaces require Apple Command Line Tools. If Codex reports that no developer tools were found, run:

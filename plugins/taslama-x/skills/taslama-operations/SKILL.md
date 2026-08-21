@@ -18,7 +18,7 @@ Use the project selected during Taslama X OAuth authorization. Never invent or o
 
 ## Safety boundaries
 
-- Treat `find*` tools as reads. Treat `create*`, `update*`, `upsertCustomers`, `deleteCustomers`, `updateBookingStatus`, and schedule-changing tools as writes.
+- Treat `find_*` and `get_*` tools as reads. Treat `create_*`, `update_*`, `upsert_customers`, `delete_customers`, and schedule-changing tools as writes.
 - Never call a write tool merely to test connectivity.
 - Do not delete a professional or customer without naming the resolved record and consequences before the call.
 - Bookings are read-only except for dedicated status and operational-timing tools exposed by the server.

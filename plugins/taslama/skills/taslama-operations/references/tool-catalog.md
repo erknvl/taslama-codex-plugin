@@ -1,37 +1,32 @@
 # Taslama MCP tool catalog
 
-The production server exposed 27 tools during validation on 2026-08-11. API-key permissions and deployment versions can expose a smaller or newer set, so discover tools at runtime.
+The available tool set depends on the API key, selected project, account role, and deployed server version, so discover tools at runtime.
 
 ## Read tools
 
-- `findBookings`, `findCustomers`
-- `findMedia`
-- `findServiceCategories`, `findServices`
-- `findProfessionals`
-- `findProductCategories`, `findProducts`
-- `findSiteSettings`, `findLandingPage`
+- `find_documents`: read enabled collections by passing `collectionSlug`. Available collections include bookings, customers, media, service categories, services, professionals, product categories, and products.
+- `find_global`: read `site-settings` or `landing-page` by passing `globalSlug`.
+- `get_config_info`: inspect the available MCP configuration when exposed.
+- `get_my_professional_schedule`: read the signed-in professional's bounded schedule when authorized.
 
-Collection reads support bounded pagination, sorting, a JSON `where` string, a JSON `select` string, locale/fallback locale, and relationship depth. Prefer `depth: 0` and explicit selection.
+Collection reads support bounded pagination, sorting, a JSON `where` value, explicit selection, locale/fallback locale, and relationship depth. Prefer `depth: 0` and explicit selection.
 
 ## Catalog and content writes
 
-- `createMedia`, `updateMedia`
-- `createServiceCategories`, `updateServiceCategories`
-- `createServices`, `updateServices`
-- `createProfessionals`, `updateProfessionals`
-- `createProductCategories`, `updateProductCategories`
-- `createProducts`, `updateProducts`
-- `updateSiteSettings`, `updateLandingPage`
+- `create_documents`: create service categories, services, professionals, product categories, or products by passing the corresponding `collectionSlug`.
+- `update_document`: update enabled content collections by ID or bounded filter.
+- `delete_documents`: currently reserved for explicitly enabled deletion flows such as professionals; treat every deletion as high impact.
+- `update_global`: update `site-settings` or `landing-page` by passing `globalSlug`.
+- `upload_media`: securely download and store an HTTPS image, returning the Media ID used by entity image galleries.
 
-The current server permits professional deletion in its collection configuration, but a particular key may omit that tool. Treat any deletion as high impact.
+## Booking and customer operations
 
-## Operational writes
-
-- `updateBookingStatus`: set up to 100 bookings to `pending`, `confirmed`, `cancelled`, `completed`, or `no-show` when the account can manage bookings.
-- `upsertCustomers`: create or update up to 100 customers while enforcing the global Account hierarchy.
-- `deleteCustomers`: unlink or remove up to 100 customers. Customers with bookings cannot be removed; shared Accounts remain preserved.
-
-Newer deployments may expose `getMyProfessionalSchedule` and `extendBookingSession`. Use them only when discovered. Schedule reads are limited to 92 days; extensions accept 1-480 minutes and can shift later active sessions.
+- `create_bookings`, `update_bookings`, `delete_bookings`: bounded booking CRUD operations for accounts that can manage bookings.
+- `update_booking_status`: set up to 100 bookings to `pending`, `confirmed`, `cancelled`, `completed`, or `no-show`.
+- `import_historical_bookings`: import up to 500 validated past bookings with terminal statuses.
+- `upsert_customers`: create or update up to 100 customers while enforcing the global Account hierarchy.
+- `delete_customers`: unlink or remove up to 100 customers. Customers with bookings cannot be removed; shared Accounts remain preserved.
+- `extend_booking_session`: extend a booking by 1-480 minutes and shift later active sessions when necessary to prevent overlap.
 
 ## Project and authorization contract
 

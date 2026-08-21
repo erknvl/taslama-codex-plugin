@@ -1,6 +1,6 @@
 {
   "name": "taslama-x",
-  "version": "1.0.0",
+  "version": "1.0.0+codex.20260821185343",
   "description": "Connect to Taslama through project-scoped OAuth and manage salon operations with Codex.",
   "author": {
     "name": "Taslama Agency",
