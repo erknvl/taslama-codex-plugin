@@ -15,6 +15,18 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Business"
+    },
+    {
+      "name": "taslama-x",
+      "source": {
+        "source": "local",
+        "path": "./plugins/taslama-x"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Business"
     }
   ]
 }
