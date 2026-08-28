@@ -53,7 +53,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Could not install the Taslama plugin.' }
 
     Write-Host 'Opening Taslama authorization...'
-    & $codex mcp login taslama --oauth-client-registration dcr
+    & $codex mcp login taslama
     if ($LASTEXITCODE -ne 0) { throw 'Taslama was installed, but authorization did not complete.' }
 
     Write-Host 'Taslama is installed and connected. Restart ChatGPT/Codex and open a new task.'

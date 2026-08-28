@@ -56,6 +56,6 @@ fi
 "${codex_bin}" plugin add taslama@taslama
 
 echo "Opening Taslama authorization..."
-"${codex_bin}" mcp login taslama --oauth-client-registration dcr
+"${codex_bin}" mcp login taslama
 
 echo "Taslama is installed and connected. Restart ChatGPT/Codex and open a new task."

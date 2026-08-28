@@ -39,7 +39,7 @@ irm https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/main/install.p
 ```sh
 codex plugin marketplace add https://github.com/erknvl/taslama-codex-plugin.git
 codex plugin add taslama@taslama
-codex mcp login taslama --oauth-client-registration dcr
+codex mcp login taslama
 ```
 
 После установки откройте новую задачу, чтобы Codex загрузил OAuth-подключение и навыки плагина. Скрипт `scripts/validate-oauth.sh` проверяет публичные OAuth-метаданные и запрос авторизации MCP без создания клиента или токена.
