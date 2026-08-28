@@ -25,13 +25,13 @@ Taslama использует Authorization Code с PKCE и выдаёт крат
 macOS — без Git и Xcode Command Line Tools:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/4c0029d84768f9dc74b2eee352899aa4e5c52cca/install.sh | sh
 ```
 
 Windows — PowerShell без Git:
 
 ```powershell
-irm https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/4c0029d84768f9dc74b2eee352899aa4e5c52cca/install.ps1 | iex
 ```
 
 Оба установщика скачивают ZIP-архив, устанавливают плагин и сразу открывают OAuth-авторизацию. Для ручной установки через Git Marketplace:

@@ -24,13 +24,13 @@ Taslama подключает ChatGPT и Codex к выбранному проек
 macOS — без Git и Xcode Command Line Tools:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/4c0029d84768f9dc74b2eee352899aa4e5c52cca/install.sh | sh
 ```
 
 Windows — PowerShell без Git:
 
 ```powershell
-irm https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/4c0029d84768f9dc74b2eee352899aa4e5c52cca/install.ps1 | iex
 ```
 
 Скрипт скачивает ZIP-архив в постоянный пользовательский каталог, устанавливает Taslama и сразу открывает OAuth-авторизацию. Git, Apple Command Line Tools и права администратора не требуются.
