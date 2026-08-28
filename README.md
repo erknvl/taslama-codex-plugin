@@ -19,21 +19,29 @@ Taslama подключает ChatGPT и Codex к выбранному проек
 
 Доступность приложения зависит от продукта, типа аккаунта и настроек рабочего пространства. Дополнительные сведения находятся в [документации плагина](plugins/taslama/README.md) и [пакете материалов для публикации](plugins/taslama/docs/README.md).
 
-## Установка через Git Marketplace
+## Быстрая установка
 
-Этот вариант подходит для локальной разработки, проверки и контролируемого развёртывания:
+macOS — без Git и Xcode Command Line Tools:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/main/install.sh | sh
+```
+
+Windows — PowerShell без Git:
+
+```powershell
+irm https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/main/install.ps1 | iex
+```
+
+Скрипт скачивает ZIP-архив в постоянный пользовательский каталог, устанавливает Taslama и сразу открывает OAuth-авторизацию. Git, Apple Command Line Tools и права администратора не требуются.
+
+Для ручной установки через Git Marketplace:
 
 ```sh
 codex plugin marketplace add https://github.com/erknvl/taslama-codex-plugin.git
 codex plugin add taslama@taslama
 ```
 
-Когда Codex предложит подключить Taslama, завершите OAuth-авторизацию. После установки откройте новую задачу, чтобы Codex загрузил подключение и навыки Taslama.
-
-На macOS для установки из Git Marketplace могут понадобиться Apple Command Line Tools. Если Codex сообщает, что инструменты разработчика не найдены, выполните:
-
-```sh
-xcode-select --install
-```
+После установки перезапустите ChatGPT/Codex и откройте новую задачу, чтобы загрузить подключение и навыки Taslama. Apple Command Line Tools могут понадобиться только для ручной установки через Git Marketplace.
 
 Не добавляйте в репозиторий пароли, коды авторизации, access-токены и refresh-токены.

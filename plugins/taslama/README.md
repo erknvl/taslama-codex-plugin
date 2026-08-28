@@ -20,13 +20,26 @@ Taslama использует Authorization Code с PKCE и выдаёт крат
 
 Учётные данные отправляются только на `https://app.taslama.agency`. Язык интерфейса MCP-сервера выбирается по `X-Taslama-Locale`, языку запроса или `Accept-Language`; резервный язык — английский. Операции с контентом используют явные параметры `locale` и `fallbackLocale`.
 
-## Установка через Git Marketplace
+## Быстрая установка
 
-Для локальной разработки, проверки или контролируемого развёртывания:
+macOS — без Git и Xcode Command Line Tools:
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/main/install.sh | sh
+```
+
+Windows — PowerShell без Git:
+
+```powershell
+irm https://raw.githubusercontent.com/erknvl/taslama-codex-plugin/main/install.ps1 | iex
+```
+
+Оба установщика скачивают ZIP-архив, устанавливают плагин и сразу открывают OAuth-авторизацию. Для ручной установки через Git Marketplace:
 
 ```sh
 codex plugin marketplace add https://github.com/erknvl/taslama-codex-plugin.git
 codex plugin add taslama@taslama
+codex mcp login taslama --oauth-client-registration dcr
 ```
 
 После установки откройте новую задачу, чтобы Codex загрузил OAuth-подключение и навыки плагина. Скрипт `scripts/validate-oauth.sh` проверяет публичные OAuth-метаданные и запрос авторизации MCP без создания клиента или токена.
