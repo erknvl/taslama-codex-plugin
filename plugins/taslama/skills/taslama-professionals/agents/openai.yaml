@@ -1,0 +1,13 @@
+interface:
+  display_name: "Taslama Professionals"
+  short_description: "Match and manage project professionals safely"
+  default_prompt: "Use $taslama-professionals to find or add professionals without creating duplicates."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "taslama"
+      description: "Taslama project-scoped professional and service operations"
+      transport: "streamable_http"
+      url: "https://app.taslama.agency/api/mcp"
+policy:
+  allow_implicit_invocation: true

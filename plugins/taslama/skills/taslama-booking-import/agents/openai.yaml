@@ -1,0 +1,13 @@
+interface:
+  display_name: "Taslama Booking Import"
+  short_description: "Import Excel or CSV bookings with safe matching"
+  default_prompt: "Use $taslama-booking-import to inspect this spreadsheet, reconcile professionals and customers, and show a dry-run before importing."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "taslama"
+      description: "Taslama project-scoped customer, professional, service, and booking operations"
+      transport: "streamable_http"
+      url: "https://app.taslama.agency/api/mcp"
+policy:
+  allow_implicit_invocation: true

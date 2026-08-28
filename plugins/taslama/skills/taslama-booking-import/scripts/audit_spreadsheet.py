@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Inventory phone-bearing cells and vertical booking blocks in an Excel salon journal."""
+"""Inventory phone-bearing cells and vertical booking blocks in a calendar-style Excel booking file."""
 
 from __future__ import annotations
 

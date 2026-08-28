@@ -1,0 +1,13 @@
+interface:
+  display_name: "Taslama Bookings"
+  short_description: "Create and manage bookings without duplicates"
+  default_prompt: "Use $taslama-bookings to prepare this booking, check matches and duplicates, then show me a preview."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "taslama"
+      description: "Taslama project-scoped booking, customer, professional, and service operations"
+      transport: "streamable_http"
+      url: "https://app.taslama.agency/api/mcp"
+policy:
+  allow_implicit_invocation: true
