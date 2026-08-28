@@ -1,6 +1,6 @@
 # Taslama MCP tool catalog
 
-The available tool set depends on the API key, selected project, account role, and deployed server version, so discover tools at runtime.
+The available tool set depends on the signed-in account, selected project, approved OAuth scopes, and deployed server version, so discover tools at runtime.
 
 ## Read tools
 
@@ -32,8 +32,8 @@ Collection reads support bounded pagination, sorting, a JSON `where` value, expl
 
 - Endpoint: `https://app.taslama.agency/api/mcp`
 - Transport: streamable HTTP over HTTPS
-- Authentication: `Authorization: Bearer <API key>`
-- Project scope: `X-Taslama-Project-ID: <project ID>`
+- Authentication: OAuth 2.1 authorization code flow with PKCE S256
+- Project scope: selected during Taslama-hosted OAuth consent and bound to the issued token
 - Locales: `tk`, `ru`, `en`
 - Operational time zone: `Asia/Ashgabat`
 

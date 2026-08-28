@@ -1,4 +1,4 @@
-# Taslama X public distribution package
+# Taslama public distribution package
 
 This directory contains submission-ready working materials for the public
 OAuth distribution. It is not proof that an app-directory submission has been

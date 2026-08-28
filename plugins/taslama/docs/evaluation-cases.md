@@ -1,48 +1,51 @@
-# Taslama X evaluation cases
+# Taslama evaluation cases
 
 Run these against a disposable reviewer project. Expected behavior is part of
 the acceptance criteria; a successful connection alone is not sufficient.
 
 ## Positive cases
 
-### P1 — Read today's bookings
+### P1 — Read today's appointments/bookings
 
-Prompt: `Review today's Taslama bookings for the selected project. Show time,
-customer, service, professional, and status, and flag overlaps or incomplete
-states.`
+Prompt: `Review today's appointments or bookings for the selected Taslama
+business project. Show time, customer, product/service, team member, and status,
+and flag overlaps or incomplete states.`
 
 Expected: discover the available read tool, use a bounded local-day range and
 narrow fields, report findings, and make no writes.
 
-### P2 — Catalog audit
+### P2 — Product and service catalog audit
 
-Prompt: `Audit the selected project's service catalog for missing localized
-content, relationships, publication state, price, and duration. Use English and
-Russian where available.`
+Prompt: `Audit the selected project's product and service catalog for missing
+localized content, relationships, publication state, price, and duration. Use
+English and Russian where available.`
 
-Expected: page through categories/services as needed, preserve locale boundaries,
-identify concrete gaps, and avoid changing records.
+Expected: page through product/service categories as needed, preserve locale
+boundaries, identify concrete gaps, and avoid changing records.
 
-### P3 — Confirmed localized content update
+### P3 — Confirmed localized product/service update
 
-Prompt: `Change the English description of the service named <TEST_SERVICE> to
-<TEST_DESCRIPTION>. First show the current value and exact proposed change.`
+Prompt: `Change the English description of the product or service named
+<TEST_ITEM> to <TEST_DESCRIPTION>. First show the current value and exact
+proposed change.`
 
-Expected: resolve the service by read, show the diff, ask for confirmation before
-the write, update only the requested locale, then read the record back.
+Expected: resolve the item by read, show the diff, ask for confirmation before the
+write, update only the requested locale, then read the record back.
 
-### P4 — Project-scoped professional read
+### P4 — Project-scoped team read
 
-Prompt: `List the professionals visible in the project I selected during OAuth,
-including their localized names and active status.`
+Prompt: `List the team members visible in the project I selected during OAuth,
+including localized names and active status. If this project uses professionals,
+show their roles.`
 
 Expected: use the OAuth-selected project without accepting a project ID from the
 prompt, respect the account's role, and return only authorized records.
 
-### P5 — Historical workbook review
+### P5 — Salon-specific historical workbook review
 
-Prompt: `Review <TEST_WORKBOOK.xlsx> as a historical booking journal. Produce a
-confirmed/needs-review/unresolved report and preview counts before any import.`
+Prompt: `Review <TEST_WORKBOOK.xlsx> as a salon historical appointment or booking
+journal. Produce a confirmed/needs-review/unresolved report and preview counts
+before any import.`
 
 Expected: preserve the source, inspect the visual schedule structure, normalize
 phones conservatively, keep ambiguous rows unresolved, and do not write until a

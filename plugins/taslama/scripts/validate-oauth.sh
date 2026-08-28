@@ -15,7 +15,7 @@ status="$(curl --silent --show-error \
   --request POST "$endpoint" \
   --header 'Accept: application/json, text/event-stream' \
   --header 'Content-Type: application/json' \
-  --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"taslama-x-validator","version":"1.0.0"}}}')"
+  --data '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"taslama-validator","version":"1.0.0"}}}')"
 
 if [[ "$status" != "401" ]]; then
   echo "Expected an unauthenticated MCP request to return 401, got ${status}." >&2
@@ -67,9 +67,9 @@ if "S256" not in authorization.get("code_challenge_methods_supported", []):
 if "authorization_code" not in authorization.get("grant_types_supported", []):
     raise SystemExit("Authorization server does not advertise authorization_code.")
 if authorization.get("token_endpoint_auth_methods_supported") != ["none"]:
-    raise SystemExit("Taslama X requires public OAuth clients without a client secret.")
+    raise SystemExit("Taslama requires public OAuth clients without a client secret.")
 
-print("Taslama X OAuth discovery is ready.")
+print("Taslama OAuth discovery is ready.")
 print(f"- resource: {resource['resource']}")
 print(f"- issuer: {authorization['issuer']}")
 print("- flow: authorization code + PKCE S256")

@@ -1,58 +1,45 @@
-# Taslama Codex plugin
+# Плагин Taslama для Codex
 
-This package connects Codex to the project-scoped Taslama MCP server at `https://app.taslama.agency/api/mcp`.
+Taslama подключает Codex к выбранному проекту через OAuth. Плагин помогает магазинам и сервисным компаниям управлять каталогом, сотрудниками, клиентами, записями, лендингом и настройками сайта без локального хранения API-ключей и ID проекта.
 
-## Credentials
+## Рекомендуемая установка
 
-1. Sign in to Taslama Admin.
-2. Open **MCP -> API Keys** and create a dedicated least-privilege key.
-3. Choose a project and copy its ID.
-4. Configure the environment used to launch Codex:
+Установите **Taslama** из поддерживаемого каталога приложений ChatGPT или Codex, нажмите **Подключить** или **Установить**, затем войдите в Taslama и выберите проект на экране подтверждения доступа.
 
-```sh
-export TASLAMA_MCP_API_KEY='your-api-key'
-export TASLAMA_PROJECT_ID='your-project-id'
-```
+То же удалённое OAuth-подключение могут использовать клиенты с поддержкой удалённых MCP-серверов. Доступность на конкретном устройстве зависит от каталога приложений и политики аккаунта.
 
-The user API key is sent as a Bearer token. The selected project is sent through the `X-Taslama-Project-ID` header. MCP access is limited by the user's role in that project.
+## Авторизация
 
-On macOS, use `launchctl setenv` for the two variables when running the Codex desktop application, then restart Codex.
+Когда Codex предложит подключить Taslama:
 
-Run `scripts/validate-mcp.sh` to verify the authenticated handshake and list the tools granted to the key.
+1. Войдите на странице Taslama.
+2. Выберите доступный вашему аккаунту проект.
+3. Подтвердите запрошенный MCP-доступ.
 
-## Language
+Taslama использует Authorization Code с PKCE и выдаёт краткосрочные access-токены, привязанные к проекту. Refresh-токены ротируются. MCP-сервер продолжает проверять участие пользователя в проекте, его роль и OAuth-scopes.
 
-MCP tool identifiers stay stable in English snake_case, while their human titles support English, Russian, and Turkmen. Taslama selects the title language from `X-Taslama-Locale`, the request language, or `Accept-Language`, with English as the fallback. Content operations continue to use their explicit `locale` and `fallbackLocale` inputs.
+Учётные данные отправляются только на `https://app.taslama.agency`. Язык интерфейса MCP-сервера выбирается по `X-Taslama-Locale`, языку запроса или `Accept-Language`; резервный язык — английский. Операции с контентом используют явные параметры `locale` и `fallbackLocale`.
 
-## Installation
+## Установка через Git Marketplace
 
-On macOS, Git marketplaces require Apple Command Line Tools. If Codex reports that no developer tools were found, run:
-
-```sh
-xcode-select --install
-```
-
-Complete the installer, restart Codex, and then add the marketplace again. The full Xcode application is not required.
-
-Install this package from the Taslama Git marketplace:
+Для локальной разработки, проверки или контролируемого развёртывания:
 
 ```sh
 codex plugin marketplace add https://github.com/erknvl/taslama-codex-plugin.git
 codex plugin add taslama@taslama
 ```
 
-Start a new task after installation so the connection and skills are reloaded.
+После установки откройте новую задачу, чтобы Codex загрузил OAuth-подключение и навыки плагина. Скрипт `scripts/validate-oauth.sh` проверяет публичные OAuth-метаданные и запрос авторизации MCP без создания клиента или токена.
 
-Do not put a real API key or project ID in this repository, the plugin manifest, screenshots, or support messages.
+## Материалы для публикации
 
-## Included features
+Текст публичного листинга, инструкция для OAuth-ревьюера, тестовые сценарии и чек-лист владельца находятся в каталоге [`docs/`](docs/README.md). Заглушки для учётных данных ревьюера, юридических ссылок, подтверждения издателя и других данных владельца оставлены намеренно.
 
-- Project-scoped Taslama MCP connection
-- Catalog, professional, customer, booking, landing-page, and site-settings operations
-- Safe write-confirmation guidance
-- Historical booking journal audit and import workflow
-- Deterministic MCP connection validation
+## Возможности
 
-## Icon
-
-The marketplace icon is stored at `assets/icon.png` and uses the yellow Taslama mark on a solid black background.
+- OAuth-авторизация с выбором проекта и подтверждением доступа
+- MCP-подключение, ограниченное выбранным проектом
+- Работа с каталогом, сотрудниками, клиентами, записями, лендингом и настройками сайта
+- Правила безопасного подтверждения изменений
+- Проверка и импорт исторических записей
+- Проверка OAuth без учётных данных

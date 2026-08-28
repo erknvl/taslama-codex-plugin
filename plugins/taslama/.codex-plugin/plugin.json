@@ -1,7 +1,7 @@
 {
   "name": "taslama",
-  "version": "1.2.0+codex.20260821185343",
-  "description": "Manage project-scoped salon content, customers, schedules, and booking operations through Taslama MCP.",
+  "version": "1.0.0+codex.20260828100523",
+  "description": "Connect to Taslama through project-scoped OAuth and manage service-business operations with Codex.",
   "author": {
     "name": "Taslama Agency",
     "url": "https://app.taslama.agency"
@@ -11,7 +11,8 @@
   "license": "MIT",
   "keywords": [
     "taslama",
-    "salon",
+    "oauth",
+    "business",
     "cms",
     "bookings",
     "mcp"
@@ -19,12 +20,13 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Taslama",
-    "shortDescription": "Run salon content and operations with Taslama.",
-    "longDescription": "Connect Codex to a selected Taslama project. Review and manage localized catalogs, professionals, customers, bookings, landing content, and site settings with project-scoped permissions.",
+    "shortDescription": "Run Taslama securely through OAuth.",
+    "longDescription": "Connect Codex to a selected Taslama project through OAuth. Review and manage localized catalogs, staff, customers, bookings, landing content, and site settings with the signed-in account's current project permissions.",
     "developerName": "Taslama Agency",
     "category": "Business",
     "capabilities": [
       "Interactive",
+      "OAuth",
       "Read",
       "Write"
     ],

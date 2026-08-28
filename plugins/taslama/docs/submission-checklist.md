@@ -1,15 +1,16 @@
-# Taslama X submission checklist
+# Taslama submission checklist
 
 Use this as an owner checklist before submitting the public OAuth distribution.
 Unchecked items are intentionally not represented as completed.
 
 ## Product and package
 
-- [ ] Confirm the public listing name is **Taslama** and the API-key plugin is
-      excluded from public onboarding.
+- [ ] Confirm the public listing name is **Taslama**, the copy addresses stores
+      and service businesses broadly, salons remain an example, and the API-key
+      plugin is excluded from public onboarding.
 - [ ] Confirm the production MCP URL and OAuth metadata URLs.
-- [ ] Run the plugin validator against `plugins/taslama-x`.
-- [ ] Run `plugins/taslama-x/scripts/validate-oauth.sh` from a network-enabled
+- [ ] Run the plugin validator against `plugins/taslama`.
+- [ ] Run `plugins/taslama/scripts/validate-oauth.sh` from a network-enabled
       environment.
 - [ ] Verify icon/logo assets, repository URL, homepage, category, scopes, and
       user-facing descriptions.

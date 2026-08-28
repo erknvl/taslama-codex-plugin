@@ -2,7 +2,9 @@
 
 This guide is for a host-product reviewer or workspace administrator. It does
 not include credentials. The owner must provide a dedicated test account and
-confirm that it contains safe, non-production data.
+confirm that it contains safe, non-production data for the submitted business
+archetype (for example, a salon, retail store, studio, repair shop, or other service
+operation).
 
 ## Owner-provided values
 

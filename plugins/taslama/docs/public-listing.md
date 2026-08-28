@@ -10,15 +10,17 @@ Taslama
 
 ## Short description
 
-Manage a selected Taslama salon project through secure project-scoped OAuth.
+Manage a selected Taslama business project through secure project-scoped OAuth.
 
 ## Long description
 
 Taslama connects ChatGPT and other supported remote MCP clients to a Taslama
-salon project. Sign in with your Taslama account, choose the project you are
-authorized to use, and review localized catalogs, professionals, customers,
-bookings, landing content, and site settings. Read and write actions remain
-subject to your Taslama membership, role, and approved OAuth scopes.
+business project. Use it for a salon, retail store, studio, repair shop, or another
+service-industry operation configured in Taslama. Sign in with your Taslama
+account, choose the project you are authorized to use, and review localized
+products and services, team members, customers, bookings, landing content, and
+site settings. Read and write actions remain subject to your Taslama membership,
+role, and approved OAuth scopes.
 
 Taslama does not require an API key, cookie, project ID environment variable, or
 local credential file. The connection uses OAuth authorization code + PKCE and
@@ -27,10 +29,14 @@ does not bypass Taslama permissions.
 
 ## Suggested capabilities
 
-- Review bookings and operational data.
-- Audit localized catalog and site content.
+- Review appointments/bookings and operational data for your business.
+- Audit localized product, service, and site content.
 - Propose and, after confirmation, apply supported content changes.
-- Review historical booking workbooks before importing confirmed records.
+- Review salon-specific historical appointment workbooks before importing confirmed records.
+
+Salons are one example of the workflow; the same project-scoped connection can
+support retail stores and other service businesses when those catalogs and
+operations are enabled for the project.
 
 ## Setup copy
 
