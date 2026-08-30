@@ -1,45 +1,30 @@
 ---
 name: taslama-operations
-description: Manage Taslama business projects through the Taslama MCP tools. Use for catalog, service, product, team, customer, booking, landing-page, site-settings, localization, schedule, and store or service-business operations involving Taslama or app.taslama.agency.
+description: Route Taslama admin and remote MCP work to focused catalog, media, website, order, booking, customer, and professional workflows in one selected project.
 ---
 
 # Taslama Operations
 
-Use the project selected during Taslama OAuth authorization. Never invent or override that project context, bypass project scope, or place passwords, authorization codes, access tokens, or refresh tokens in chat, files, logs, or tool arguments.
+Use the project selected by the authenticated Taslama session. Never invent, override, or bypass project context, and never place passwords, authorization codes, access tokens, or refresh tokens in chat, files, logs, or tool arguments.
 
 ## Workflow
 
-1. Inspect the available Taslama tools because access depends on the signed-in account, selected project, approved OAuth scopes, and deployed server version.
-2. Start with the narrowest read: use `depth: 0`, a small `limit`, explicit `select`, and the requested locale (`tk`, `ru`, or `en`).
-3. Resolve names to IDs before using relationships or mutations. Reuse IDs returned by reads.
-4. Summarize the current state and the exact proposed change.
-5. For a write, obtain confirmation unless the user already gave an explicit, unambiguous instruction to make that change.
-6. Call the narrowest write tool, then read the affected record back and report the result.
+1. Inspect available tools because access depends on the signed-in account, selected project, active admin page, project features, approved OAuth scopes, and deployed server version. `taslama_*` tools are browser WebMCP tools from an open Taslama admin tab; remote MCP tools come from the OAuth server. Do not assume one channel exposes the other channel's tools.
+2. Start with the narrowest read. Use `depth: 0`, a small `limit`, explicit `select`, and the requested locale (`tk`, `ru`, or `en`).
+3. Resolve names to selected-project IDs before relationship writes. Reuse IDs returned by reads.
+4. Summarize current state and the exact proposed change.
+5. Obtain confirmation before a write unless the user's current instruction already confirms the same records and values.
+6. Call the narrowest write tool, re-read the affected record, and report the result.
 
 ## Safety boundaries
 
-- Treat `find_*` and `get_*` tools as reads. Treat `create_*`, `update_*`, `upsert_customers`, `delete_customers`, and schedule-changing tools as writes.
-- Never call a write tool merely to test connectivity.
-- Do not delete a professional or customer without naming the resolved record and consequences before the call.
-- Bookings are read-only except for dedicated status and operational-timing tools exposed by the server.
-- Preserve original booking timing. When extending a session, explain that later active sessions can move to prevent overlap.
-- Use integer minor units for prices and `Asia/Ashgabat` for operational time.
-- Respect the server's current account role and OAuth scope checks. Do not retry a denied action through a broader tool.
-- If a global or collection is reported missing, treat it as deployment/schema drift, not an empty result; do not attempt the corresponding update.
+- Treat `find_*`, `get_*`, and `taslama_get_*` tools as reads.
+- Treat create, update, delete, booking timing, `taslama_transition_order`, payment, refund, discount, inventory, and media tools as writes. Never call a write merely to test connectivity.
+- Respect current role, OAuth scope, feature, and server checks. Do not retry a denied action through a broader tool or direct REST.
+- Use integer minor units for prices and payments. Operational time zone is `Asia/Ashgabat`.
+- Resolve relationships through reads, preserve unrelated fields and locales, and page through audits or imports.
+- If a singleton is reported missing, treat it as deployment/schema drift rather than empty content.
 
-## Content and localization
+Use `$taslama-orders` for orders, payments, refunds, discounts, promotions, and inventory. Use `$taslama-store-content` for catalog, media, site settings, and landing pages. Use the focused booking, import, and professional skills for those workflows.
 
-- Read the current locale before editing localized text.
-- Preserve other locales. Update only the requested locale unless the user explicitly requests a coordinated multilingual change.
-- Keep relationship fields as IDs and resolve them through read tools first.
-- Use pagination for audits and imports; never assume the first page is complete.
-
-## Operational patterns
-
-- Daily schedule: read bookings for a bounded local-day range, select only timing, customer, product/service, team member, and status fields, then flag overlaps or incomplete states.
-- Catalog audit: list categories before services or products, page through results, and report missing relationships, publication state, price, duration, media, or translation fields.
-- Historical booking import: validate past dates and terminal statuses, identify customers by normalized Turkmenistan phone first or email as fallback, submit at most 500 bookings per call, and continue with another call for additional batches.
-- Customer import: normalize and preview names, Turkmenistan phone numbers, and emails; batch no more than 100; report each created or updated result.
-- Landing/site edits: read the global first, preserve unrelated fields and block order, then update only the requested values.
-
-Read [tool-catalog.md](references/tool-catalog.md) when planning a multi-step operation or when the available tool names are unclear.
+Read [tool-catalog.md](references/tool-catalog.md) when tool names or channel boundaries are unclear.

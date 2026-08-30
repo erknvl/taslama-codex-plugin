@@ -1,0 +1,4 @@
+interface:
+  display_name: "Taslama Orders"
+  short_description: "Operate orders, payments, and inventory"
+  default_prompt: "Use $taslama-orders to review and safely update this Taslama order."

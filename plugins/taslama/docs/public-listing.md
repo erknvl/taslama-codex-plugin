@@ -1,8 +1,6 @@
 # Public listing copy: Taslama
 
-Use this copy as a starting point for the published ChatGPT/Codex app or
-workspace listing. Adjust character limits to the destination form without
-changing the security boundaries below.
+Use this copy as the starting point for a published ChatGPT, Codex, or workspace listing. Adjust destination character limits without weakening the boundaries below.
 
 ## Name
 
@@ -10,58 +8,43 @@ Taslama
 
 ## Short description
 
-Manage a selected Taslama business project through secure project-scoped OAuth.
+Manage one selected Taslama business project through secure OAuth and contextual admin WebMCP.
 
 ## Long description
 
-Taslama connects ChatGPT and other supported remote MCP clients to a Taslama
-business project. Use it for a salon, retail store, studio, repair shop, or another
-service-industry operation configured in Taslama. Sign in with your Taslama
-account, choose the project you are authorized to use, and review localized
-products and services, team members, customers, bookings, landing content, and
-site settings. Read and write actions remain subject to your Taslama membership,
-role, and approved OAuth scopes.
+Taslama connects ChatGPT and other supported clients to one Taslama business project. Use it for a salon, retail store, studio, repair shop, or another configured service business.
 
-Taslama does not require an API key, cookie, project ID environment variable, or
-local credential file. The connection uses OAuth authorization code + PKCE and
-project-bound tokens. The app asks for confirmation before supported writes and
-does not bypass Taslama permissions.
+Sign in, authorize one project, and review localized products, services, media, team members, customers, bookings, orders, landing content, and site settings. When an authenticated Taslama admin tab is open in a supporting client, contextual WebMCP tools can also operate guarded order, offline payment, refund, inventory, media, and website workflows.
+
+Reads and writes remain subject to project membership, role, feature mode, OAuth scopes, and server validation. Taslama does not require users to copy API keys, cookies, project IDs, or local credential files. The remote connection uses OAuth authorization code with PKCE and project-bound tokens.
 
 ## Suggested capabilities
 
-- Review appointments/bookings and operational data for your business.
-- Audit localized product, service, and site content.
-- Propose and, after confirmation, apply supported content changes.
-- Review salon-specific historical appointment workbooks before importing confirmed records.
-
-Salons are one example of the workflow; the same project-scoped connection can
-support retail stores and other service businesses when those catalogs and
-operations are enabled for the project.
+- Review appointments and operational schedules.
+- Review orders and apply guarded status, offline payment, refund, discount, and inventory operations in the authenticated admin app.
+- Audit localized product, service, media, landing, and site content.
+- Upload supported images from public HTTPS sources into selected-project Media instead of requiring manual CMS upload.
+- Preview and apply confirmed localized content changes.
+- Review historical appointment workbooks before importing confirmed records.
 
 ## Setup copy
 
-Choose **Connect** or **Install**, sign in at Taslama, select a project, and
-approve access. To change projects, disconnect Taslama and authorize again.
+Choose **Connect** or **Install**, sign in to Taslama, select a project, and approve access. To change projects, disconnect Taslama and authorize again. Admin WebMCP additionally requires the authenticated Taslama admin app to be open in a supporting client.
 
-## Data and privacy copy
+## Data privacy copy
 
-Taslama receives only the requests and records needed for the tools you invoke,
-subject to the selected project's permissions. Do not submit passwords, OAuth
-codes, access tokens, refresh tokens, or unrelated personal data in chat. Review
-the privacy policy at `https://app.taslama.agency/privacy` and contact Taslama
-Support at `https://app.taslama.agency/support` before publishing.
+Taslama receives only requests and records needed by the tools invoked, subject to selected-project permissions. Do not submit passwords, OAuth codes, access tokens, refresh tokens, or unrelated personal data in chat.
 
-## Reviewer-facing endpoint details
-
-- MCP resource: `https://app.taslama.agency/api/mcp`
-- Protected-resource metadata: `https://app.taslama.agency/.well-known/oauth-protected-resource/api/mcp`
-- Authorization-server metadata: `https://app.taslama.agency/.well-known/oauth-authorization-server`
-- OAuth scopes: `mcp:read`, `mcp:write`
-- Flow: authorization code with PKCE S256; public clients do not use a client secret
 - Documentation: `https://app.taslama.agency/taslama-plugin`
 - Privacy policy: `https://app.taslama.agency/privacy`
 - Terms: `https://app.taslama.agency/terms`
 - Support: `https://app.taslama.agency/support`
 
-These values should be rechecked against the production deployment immediately
-before submission.
+## Reviewer-facing endpoints
+
+- MCP: `https://app.taslama.agency/api/mcp`
+- Protected resource: `https://app.taslama.agency/.well-known/oauth-protected-resource/api/mcp`
+- Authorization server: `https://app.taslama.agency/.well-known/oauth-authorization-server`
+- OAuth: authorization code with PKCE S256; no client secret
+
+Recheck these values against production immediately before submission.

@@ -1,6 +1,6 @@
 {
   "name": "taslama",
-  "version": "1.0.0+codex.20260828135839",
+  "version": "1.0.0+codex.20260830161226",
   "description": "Connect to Taslama through project-scoped OAuth and manage service-business operations with Codex.",
   "author": {
     "name": "Taslama Agency",
@@ -15,13 +15,16 @@
     "business",
     "cms",
     "bookings",
-    "mcp"
+    "mcp",
+    "webmcp",
+    "orders",
+    "media"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Taslama",
     "shortDescription": "Run Taslama securely through OAuth.",
-    "longDescription": "Connect Codex to a selected Taslama project through OAuth. Review and manage localized catalogs, staff, customers, bookings, landing content, and site settings with the signed-in account's current project permissions.",
+    "longDescription": "Connect Codex to a selected Taslama project through OAuth and use contextual WebMCP tools in the authenticated admin app. Review and manage localized catalogs, media, staff, customers, bookings, orders, landing content, and site settings with current project permissions.",
     "developerName": "Taslama Agency",
     "category": "Business",
     "capabilities": [
@@ -33,6 +36,7 @@
     "websiteURL": "https://app.taslama.agency",
     "defaultPrompt": [
       "Review today's Taslama bookings and flag issues.",
+      "Review recent Taslama orders and flag operational issues.",
       "Audit my Taslama catalog for missing content.",
       "Update Taslama content after showing me the changes."
     ],

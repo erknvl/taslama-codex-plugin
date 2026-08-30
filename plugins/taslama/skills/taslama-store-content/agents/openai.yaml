@@ -1,0 +1,4 @@
+interface:
+  display_name: "Taslama Store Content"
+  short_description: "Manage catalog, media, and website content"
+  default_prompt: "Use $taslama-store-content to update this Taslama store content safely."

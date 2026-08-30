@@ -1,40 +1,38 @@
-# Taslama MCP tool catalog
+# Taslama tool catalog
 
-The available tool set depends on the signed-in account, selected project, approved OAuth scopes, and deployed server version, so discover tools at runtime.
+Discover tools at runtime. Availability depends on the account, selected project, OAuth scopes, project features, active admin page, and deployed server version.
 
-## Read tools
+## Remote MCP
 
-- `find_documents`: read enabled collections by passing `collectionSlug`. Available collections include bookings, customers, media, service categories, services, professionals, product categories, and products.
-- `find_global`: read `site-settings` or `landing-page` by passing `globalSlug`.
-- `get_config_info`: inspect the available MCP configuration when exposed.
-- `get_my_professional_schedule`: read the signed-in professional's bounded schedule when authorized.
+- `find_documents`: read enabled collections through `collectionSlug`. Depending on role and features, these include bookings, customers, media, service categories, services, professionals, product categories, products, carts, orders, inventory movements, order payments, and promotions.
+- `find_global`: read `site-settings` or `landing-page` through `globalSlug`.
+- `create_documents`, `update_document`, `delete_documents`: scoped content writes where exposed.
+- `upload_media`: download a public HTTPS image into selected-project Media and return its ID. Media document updates may additionally expose upload references, external URLs, or file/base64 input in their runtime schema. Inspect that schema before telling the user to upload manually.
+- Booking and customer tools include `create_bookings`, `update_bookings`, `delete_bookings`, `update_booking_status`, `import_historical_bookings`, `extend_booking_session`, `upsert_customers`, and `delete_customers` according to role.
 
-Collection reads support bounded pagination, sorting, a JSON `where` value, explicit selection, locale/fallback locale, and relationship depth. Prefer `depth: 0` and explicit selection.
+Remote commerce collections are read-only. Guarded order transitions and ledger writes are provided by admin WebMCP.
 
-## Catalog and content writes
+## Admin WebMCP
 
-- `create_documents`: create service categories, services, professionals, product categories, or products by passing the corresponding `collectionSlug`.
-- `update_document`: update enabled content collections by ID or bounded filter.
-- `delete_documents`: currently reserved for explicitly enabled deletion flows such as professionals; treat every deletion as high impact.
-- `update_global`: update `site-settings` or `landing-page` by passing `globalSlug`.
-- `upload_media`: securely download and store an HTTPS image, returning the Media ID used by entity image galleries.
+These tools require an open, authenticated Taslama admin tab:
 
-## Booking and customer operations
+- `taslama_admin_context`: active admin path, selected project, locale, roles, commerce mode, and current order ID.
+- `taslama_get_site_settings`, `taslama_update_site_settings`: selected-project website and store settings.
+- `taslama_get_landing_page`, `taslama_update_landing_page`: ordered landing blocks.
+- `taslama_upload_media`: JPEG, PNG, WebP, or AVIF from a public HTTPS URL into selected-project Media.
+- `taslama_find_orders`, `taslama_get_order`: selected-project orders when commerce mode is `order-request`.
+- `taslama_transition_order`: guarded confirmation, rejection, processing, ready, dispatch, completion, or cancellation.
+- `taslama_record_order_payment`, `taslama_record_order_refund`, `taslama_set_order_discount`, `taslama_adjust_inventory`: guarded TMT minor-unit ledger and inventory operations according to role.
 
-- `create_bookings`, `update_bookings`, `delete_bookings`: bounded booking CRUD operations for accounts that can manage bookings.
-- `update_booking_status`: set up to 100 bookings to `pending`, `confirmed`, `cancelled`, `completed`, or `no-show`.
-- `import_historical_bookings`: import up to 500 validated past bookings with terminal statuses.
-- `upsert_customers`: create or update up to 100 customers while enforcing the global Account hierarchy.
-- `delete_customers`: unlink or remove up to 100 customers. Customers with bookings cannot be removed; shared Accounts remain preserved.
-- `extend_booking_session`: extend a booking by 1-480 minutes and shift later active sessions when necessary to prevent overlap.
+Admin WebMCP reuses Payload session cookies, selected-project context, access control, state-transition validation, stock transactions, and append-only ledgers. Never bypass a rejected tool through direct REST.
 
-## Project and authorization contract
+## Authorization contract
 
-- Endpoint: `https://app.taslama.agency/api/mcp`
+- Remote endpoint: `https://app.taslama.agency/api/mcp`
 - Transport: streamable HTTP over HTTPS
-- Authentication: OAuth 2.1 authorization code flow with PKCE S256
-- Project scope: selected during Taslama-hosted OAuth consent and bound to the issued token
+- Authentication: OAuth 2.1 authorization code with PKCE S256
+- Project scope: bound during Taslama-hosted authorization
 - Locales: `tk`, `ru`, `en`
-- Operational time zone: `Asia/Ashgabat`
+- Time zone: `Asia/Ashgabat`
 
-Accounts, project memberships, and audit logs are not exposed as general MCP collections. Server-side access control remains authoritative.
+Accounts, project memberships, and audit logs are not general content collections. Server-side access control remains authoritative.
